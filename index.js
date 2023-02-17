@@ -1,13 +1,23 @@
 const express = require('express');
 const format = require('date-format');
 const dotenv = require('dotenv');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+
+const swaggerDocument = YAML.load('./swagger.yaml');
 
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-app.get('/', (req, res) => {
+const options = {
+  explorer: true,
+};
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+
+app.get('/', (_req, res) => {
   res.status(200).send('<h1>Welcome to Social App</h1>');
 });
 
