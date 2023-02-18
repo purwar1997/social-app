@@ -10,6 +10,20 @@ servers:
   - url: https://social-app-tpht.onrender.com
     description: Production server where app is deployed
 
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - basicAuth: []
+  - bearerAuth: []
+
 paths:
   /instagram:
     get:
