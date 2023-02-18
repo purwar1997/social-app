@@ -59,7 +59,7 @@ app.get('/api/v1/:token', (req, res) => {
   const token = req.params.token;
 
   res.status(400).json({
-    params: token,
+    token,
     message: `${token} is not a valid path`,
   });
 });

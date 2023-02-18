@@ -13,10 +13,11 @@ servers:
 paths:
   /instagram:
     get:
-      summary: Returns instagram account details
+      summary: Used to fetch instagram account
+      description: Returns a JSON object which contains instagram account details
       responses:
         '200':
-          description: A JSON object which contains instagram account details
+          description: Successful operation
           content:
             application/json:
               schema:
@@ -31,4 +32,76 @@ paths:
                     type: number
                     format: int64
                   date:
+                    type: string
+
+  /facebook:
+    get:
+      summary: Used to fetch facebook account
+      description: Returns a JSON object which contains facebook account details
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  friends:
+                    type: number
+                    format: int64
+                  following:
+                    type: number
+                    format: int64
+                  date:
+                    type: string
+
+  /linkedin:
+    get:
+      summary: Used to fetch linkedin account
+      description: Returns a JSON object which contains linkedin account details
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers:
+                    type: number
+                    format: int64
+                  following:
+                    type: number
+                    format: int64
+                  connections:
+                    type: number
+                    format: int64
+                  date:
+                    type: string
+
+  /{token}:
+    get:
+      description: Returns a JSON object with message and token provided by user
+      parameters:
+        - name: token
+          in: path
+          description: token
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad request error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  message:
                     type: string
