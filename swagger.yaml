@@ -1,1 +1,34 @@
 openapi: 3.0.0
+info:
+  title: Social App
+  description: A simple app created using express.js
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:4000/api/v1
+    description: Localhost server when app is in development stage
+  - url: https://social-app-tpht.onrender.com
+    description: Production server where app is deployed
+
+paths:
+  /instagram:
+    get:
+      summary: Returns instagram account details
+      responses:
+        '200':
+          description: A JSON object which contains instagram account details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers:
+                    type: number
+                    format: int64
+                  following:
+                    type: number
+                    format: int64
+                  date:
+                    type: string
