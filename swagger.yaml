@@ -19,16 +19,18 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-
-security:
-  - basicAuth: []
-  - bearerAuth: []
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
 
 paths:
   /instagram:
     get:
-      summary: Used to fetch instagram account
-      description: Returns a JSON object which contains instagram account details
+      summary: Gets instagram account details
+      description: Returns a JSON object containing username, followers, following, date
+      security:
+        - basicAuth: []
       responses:
         '200':
           description: Successful operation
@@ -50,8 +52,10 @@ paths:
 
   /facebook:
     get:
-      summary: Used to fetch facebook account
-      description: Returns a JSON object which contains facebook account details
+      summary: Gets facebook account details
+      description: Returns a JSON object containing username, friends, following, date
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: Successful operation
@@ -73,8 +77,10 @@ paths:
 
   /linkedin:
     get:
-      summary: Used to fetch linkedin account
-      description: Returns a JSON object which contains linkedin account details
+      summary: Gets linkedin account details
+      description: Returns a JSON object containing username, followers, following, connections, date
+      security:
+        - apiKeyAuth: []
       responses:
         '200':
           description: Successful operation
